@@ -11,6 +11,9 @@ const users = require('./routes/users')
 
 const cpuTemp = require('./utils/cpuTemp');
 
+const led = require('./utils/led.js');
+
+led()
 
 // error handler
 onerror(app)
