@@ -9,7 +9,6 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
-const getLocalIP = require('./utils/getLocalIP');
 const cpuTemp = require('./utils/cpuTemp');
 
 
@@ -40,18 +39,5 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 
-// error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
-const server = app.listen(3000, 'localhost', function () {
-	const host = server.address().address
-	const port = server.address().port
-	console.log("应用实例，访问地址为 http://%s:%s", host, port)
-  console.log(getLocalIP());
-	
-})
-
-cpuTemp()
 
 module.exports = app
